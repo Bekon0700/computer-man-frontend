@@ -8,7 +8,10 @@ const ServiceCard = ({ data }) => {
     return (
         <div className='flex flex-col justify-between gap-8 border rounded-md'>
             <div className='flex flex-col gap-3'>
-                <PhotoProvider>
+                <PhotoProvider
+                speed={() => 800}
+                easing={(type) => (type === 2 ? 'cubic-bezier(0.36, 0, 0.66, -0.56)' : 'cubic-bezier(0.34, 1.56, 0.64, 1)')}
+              >
                     <div className="foo">
                         <PhotoView src={thumbnail}>
                         <img src={thumbnail} alt={serviceName} className='h-96 w-full rounded-t-md' />
@@ -25,7 +28,7 @@ const ServiceCard = ({ data }) => {
             <div className='flex flex-col gap-3'>
                 <p className='truncate px-3'>{description}</p>
                 <p className='pl-3 text-lg font-semibold'>Rating: {rating}</p>
-                <Link to={`/serivce/${_id}`} className='text-center py-2 bg-blue-400 text-lg text-white font-semibold rounded-b-md'>View Details</Link>
+                <Link to={`/service/${_id}`} className='text-center py-2 bg-blue-500 hover:bg-green-600 text-lg text-white font-semibold rounded-b-md'>View Details</Link>
             </div>
         </div>
     )
