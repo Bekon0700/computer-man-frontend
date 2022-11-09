@@ -5,6 +5,7 @@ import Services from './pages/services/Services'
 import Service from './pages/service/Service'
 import Reviews from './pages/reviews/Reviews'
 import AddService from './pages/add-service/AddService'
+import Login from './pages/login/Login'
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
           {
               path: 'add-service',
               element: <AddService />
+          },
+          {
+              path: 'login',
+              element: <Login />
           },
       ]
   }

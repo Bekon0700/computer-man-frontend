@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { authContext } from '../../context/AuthProvider'
 
 const NavBar = () => {
+    const { user, userLogout } = useContext(authContext)
+    console.log(user)
+    const logOutHandler = async () => {
+        await userLogout()
+    }
     return (
         <div className='bg-purple-100'>
             <div className="navbar w-11/12 mx-auto">
@@ -12,8 +18,14 @@ const NavBar = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow font-semibold bg-base-100 rounded-box w-52">
                             <li><Link to='/services'>Services</Link></li>
-                            <li><Link to='/add-service'>Add Service</Link></li>
-                            <li><Link to='/reviews'>My-Reviews</Link></li>
+                            {
+                                user ?
+                                    <>
+                                        <li><Link to='/add-service'>Add Service</Link></li>
+                                        <li><Link to='/reviews'>My-Reviews</Link></li>
+                                    </> :
+                                    <div></div>
+                            }
                         </ul>
                     </div>
                     <Link to='/' className="text-lg lg:text-xl font-semibold text-gray-700">Computer_Man</Link>
@@ -21,12 +33,23 @@ const NavBar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0 font-semibold text-green-700">
                         <li><Link to='/services'>Services</Link></li>
-                        <li><Link to='/add-service'>Add Service</Link></li>
-                        <li><Link to='/reviews'>My-Reviews</Link></li>
+                        {
+                            user ?
+                                <>
+                                    <li><Link to='/add-service'>Add Service</Link></li>
+                                    <li><Link to='/reviews'>My-Reviews</Link></li>
+                                </> :
+                                <div></div>
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/login' className="px-3 py-2 bg-gray-800 text-white rounded-md">Login</Link>
+                    {
+                        user ?
+                            <Link onClick={logOutHandler} className="px-3 py-2 bg-red-900 text-white rounded-md">Logout</Link>
+                            :
+                            <Link to='/login' className="px-3 py-2 bg-gray-800 text-white rounded-md">Login</Link>
+                    }
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ const Service = () => {
       <div className='py-12'>
         <ServiceDetails data={service} />
       </div>
-      <div className='w-10/12 lg:w-2/3 mx-auto pb-12 flex flex-col gap-6'>
+      <div className='w-10/12 lg:w-2/3 mx-auto pb-6 flex flex-col gap-6'>
         <p className='font-semibold text-2xl'>Customers Review for this service</p>
         <div className='flex flex-col gap-3'>
         {
@@ -21,6 +21,13 @@ const Service = () => {
           reviews.map(el => <ServiceReview key={el._id} data={el} />)
         }
         </div>
+      </div>
+      <div className='w-10/12 lg:w-2/3 mx-auto pb-12 flex flex-col gap-6'>
+        <p className='text-2xl font-bold'>Add your review here</p>
+        <form>
+          <textarea className="textarea w-full border-gray-900" placeholder="your review"></textarea>
+          <button className='py-3 bg-blue-500 text-white font-semibold uppercase w-full rounded-md mt-2' type='submit'>submit</button>
+        </form>
       </div>
     </div>
   )
