@@ -32,9 +32,23 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
         try {
-            await userLogin(email, password)
+            const {user} = await userLogin(email, password)
             form.reset()
-            navigate(path, { replace: true })
+            const currentUser = {
+                email: user.email
+            }
+            fetch('https://computer-man-backend.vercel.app/api/v1/reviews/createToken', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('jwtoken', data.token);
+                navigate(path, { replace: true })
+            })
         } catch (err) {
             errorHandler(err.message)
         }
@@ -69,9 +83,6 @@ const Login = () => {
                         }
                         <button className="block w-full p-3 text-center font-semibold text-lg rounded-sm text-gray-900 bg-violet-400">Sign in</button>
                     </form>
-                    <div className='py-2'>
-                        <Link to='/reset-password' className='text-sm underline text-end text-blue-400'>forget password</Link>
-                    </div>
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
                         <p className="px-3 text-base text-gray-800 dark:text-gray-100 font-semibold">Login with social accounts</p>

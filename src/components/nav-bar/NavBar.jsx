@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { authContext } from '../../context/AuthProvider'
 
 const NavBar = () => {
+  const location = useLocation()
     const { user, userLogout } = useContext(authContext)
     const logOutHandler = async () => {
         await userLogout()
@@ -47,7 +48,7 @@ const NavBar = () => {
                         user ?
                             <Link onClick={logOutHandler} className="px-3 py-2 bg-red-900 text-white rounded-md">Logout</Link>
                             :
-                            <Link to='/login' className="px-3 py-2 bg-gray-800 text-white rounded-md">Login</Link>
+                            <Link to='/login' replace={true} state={{ from: `${location.pathname}`, to: '/login' }} className="px-3 py-2 bg-gray-800 text-white rounded-md">Login</Link>
                     }
                 </div>
             </div>

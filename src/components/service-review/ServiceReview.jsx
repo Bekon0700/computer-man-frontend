@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ServiceReview = ({ data }) => {
-    const { email, review, createdAt } = data
+    const { email, review, createdAt, name } = data
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const date = createdAt
     const event = new Date(date);
@@ -11,7 +11,7 @@ const ServiceReview = ({ data }) => {
             <div className='flex items-center gap-2'>
                 <img src="https://placeimg.com/80/81/people" className='w-8 rounded-full' />
                 <div>
-                    <p className='text-sm'>{email}</p>
+                    <p className='text-sm'>{name ? `${name}` : `${email}`}</p>
                     <p className='text-gray-500 text-sm'>{cat}</p>
                 </div>
             </div>
