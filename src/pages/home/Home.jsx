@@ -1,7 +1,9 @@
 import React from 'react'
 import { useLoaderData } from 'react-router-dom'
+import Banner from '../../components/banner/Banner'
 import Hero from '../../components/hero/Hero'
 import ServiceCard from '../../components/service-card/ServiceCard'
+import Timeline from '../../components/timeline/Timeline'
 
 const Home = () => {
   const {services} = useLoaderData()
@@ -15,6 +17,12 @@ const Home = () => {
             services.map(el => <ServiceCard key={el._id} data={el} />)
           }
         </div>
+      </div>
+      <div className='border my-16'>
+        <Banner />
+      </div>
+      <div>
+        <Timeline />
       </div>
     </div>
   )
