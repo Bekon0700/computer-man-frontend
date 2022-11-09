@@ -6,6 +6,11 @@ import Service from './pages/service/Service'
 import Reviews from './pages/reviews/Reviews'
 import AddService from './pages/add-service/AddService'
 import Login from './pages/login/Login'
+import Registration from './pages/registration/Registration'
+
+import ProtectedRoute from './protected-route/ProtectedRoute'
+
+import { Toaster } from 'react-hot-toast'
 
 
 const router = createBrowserRouter([
@@ -43,15 +48,19 @@ const router = createBrowserRouter([
           },
           {
               path: 'reviews',
-              element: <Reviews />
+              element: <ProtectedRoute><Reviews /></ProtectedRoute>
           },
           {
               path: 'add-service',
-              element: <AddService />
+              element: <ProtectedRoute><AddService /></ProtectedRoute>
           },
           {
               path: 'login',
               element: <Login />
+          },
+          {
+              path: 'register',
+              element: <Registration />
           },
       ]
   }
@@ -61,6 +70,7 @@ function App() {
   return (
     <div >
       <RouterProvider router={router}></RouterProvider>
+      <Toaster />
     </div>
   )
 }

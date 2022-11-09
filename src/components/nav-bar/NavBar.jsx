@@ -4,7 +4,6 @@ import { authContext } from '../../context/AuthProvider'
 
 const NavBar = () => {
     const { user, userLogout } = useContext(authContext)
-    console.log(user)
     const logOutHandler = async () => {
         await userLogout()
     }
