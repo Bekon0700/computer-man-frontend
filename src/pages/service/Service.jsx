@@ -1,12 +1,14 @@
 import React from 'react'
 import { useLoaderData } from 'react-router-dom'
+import ServiceDetails from '../../components/service-detail/ServiceDetails'
 
 const Service = () => {
   const {service} = useLoaderData()
-  console.log(service)
   return (
     <div>
-      service
+      <div className='py-12'>
+        <ServiceDetails data={service} />
+      </div>
     </div>
   )
 }
