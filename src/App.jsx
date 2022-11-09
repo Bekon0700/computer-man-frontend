@@ -1,32 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Main from './components/layout/Main'
+import Home from './pages/home/Home'
+import Services from './pages/services/Services'
+import Reviews from './pages/reviews/Reviews'
+import AddService from './pages/add-service/AddService'
+
+
+const router = createBrowserRouter([
+  {
+      path: '/',
+      element: <Main />,
+      children: [
+          {
+              path: '/',
+              loader: async () => {
+                return fetch('https://computer-man-backend.vercel.app/api/v1/services?limit=3&sort=-rating')
+              },
+              element: <Home />
+          },
+          {
+              path: 'home',
+              loader: async () => {
+                return fetch('https://computer-man-backend.vercel.app/api/v1/services?limit=3&sort=-rating')
+              },
+              element: <Home />
+          },
+          {
+              path: 'services',
+              element: <Services />
+          },
+          {
+              path: 'reviews',
+              element: <Reviews />
+          },
+          {
+              path: 'add-service',
+              element: <AddService />
+          },
+      ]
+  }
+])
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div >
+      <RouterProvider router={router}></RouterProvider>
     </div>
   )
 }
