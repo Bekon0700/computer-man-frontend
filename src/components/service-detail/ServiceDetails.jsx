@@ -7,7 +7,7 @@ const ServiceDetails = ({data}) => {
     const discount = (price * 1) * ((discountPercentage * 1) / 100)
     const discountPrice = (price * 1) - discount
     return (
-        <div className='w-1/2 mx-auto'>
+        <div className='w-10/12 lg:w-2/3 mx-auto'>
             <div className='flex flex-col justify-between gap-8 rounded-md'>
                 <div className='flex flex-col gap-3'>
                     <PhotoProvider
@@ -26,11 +26,11 @@ const ServiceDetails = ({data}) => {
                         <span className='line-through text-lg font-normal text-gray-500'>${price}</span>
                     </div>
                     <p className='text-lg text-green-700 font-medium pl-3'>Save {discountPercentage}%</p>
+                    <p className='pl-3 text-lg font-semibold'>Rating: {rating}</p>
                 </div>
                 <div className='flex flex-col gap-3'>
-                    <p className='truncate px-3'>{description}</p>
-                    <p className='pl-3 text-lg font-semibold'>Rating: {rating}</p>
-                    <Link to={`/service/${_id}`} className='text-center py-2 bg-blue-500 hover:bg-green-600 text-lg text-white font-semibold rounded-b-md'>View Details</Link>
+                    <p className='px-3 font-semibold'>Description</p>
+                    <p className='px-3 text-justify'>{description}</p>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ const ServiceCard = ({ data }) => {
             <div className='flex flex-col gap-3'>
                 <p className='truncate px-3'>{description}</p>
                 <p className='pl-3 text-lg font-semibold'>Rating: {rating}</p>
-                <Link to={`/service/${_id}`} className='text-center py-2 bg-blue-500 hover:bg-green-600 text-lg text-white font-semibold rounded-b-md'>View Details</Link>
+                <Link to={`/services/${_id}`} className='text-center py-2 bg-blue-500 hover:bg-green-600 text-lg text-white font-semibold rounded-b-md'>View Details</Link>
             </div>
         </div>
     )

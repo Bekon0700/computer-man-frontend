@@ -34,7 +34,7 @@ const router = createBrowserRouter([
               element: <Services />
           },
           {
-              path: 'service/:id',
+              path: 'services/:id',
               loader: async ({params}) => {
                 return fetch(`https://computer-man-backend.vercel.app/api/v1/services/${params.id}`)
               },
