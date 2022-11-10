@@ -17,8 +17,8 @@ const AddService = () => {
   const submitHandle = (e) => {
     e.preventDefault()
     const fData = new FormData()
-    fData.append('img-upload', data['img-upload'])
-    console.log(data['img-upload'])
+    fData.append('image', data['img-upload'])
+
     fetch('https://computer-man-backend.vercel.app/api/v1/services/', {
       method: 'POST',
       headers: {
@@ -27,12 +27,24 @@ const AddService = () => {
       },
       body: JSON.stringify(data)
     })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        e.target.reset()
-        toast.success('Service Added')
+    .then(res => res.json())
+    .then(data => {
+      const {service} = data
+      fetch(`http://localhost:8500/api/v1/services/img-upload/${service._id}`, {
+        method: 'POST',
+        body: fData
       })
+      .then(res => {
+        toast.success('img uploaded')
+      }).catch(err => {
+        console.log(err)
+      })
+      e.target.reset()
+      toast.success('Service Added')
+    })
+    .catch(err => {
+      console.log(err)
+    })
 
   }
 
