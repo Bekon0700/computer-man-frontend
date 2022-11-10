@@ -13,6 +13,7 @@ import Error from './pages/error/Error'
 import ProtectedRoute from './protected-route/ProtectedRoute'
 
 import { Toaster } from 'react-hot-toast'
+import LoadingRoute from './loading-route/LoadingRoute'
 
 
 const router = createBrowserRouter([
@@ -26,21 +27,21 @@ const router = createBrowserRouter([
               loader: async () => {
                 return fetch('https://computer-man-backend.vercel.app/api/v1/services?limit=3&sort=-rating')
               },
-              element: <Home />
+              element: <LoadingRoute><Home /></LoadingRoute>
           },
           {
               path: 'home',
               loader: async () => {
                 return fetch('https://computer-man-backend.vercel.app/api/v1/services?limit=3&sort=-rating')
               },
-              element: <Home />
+              element: <LoadingRoute><Home /></LoadingRoute>
           },
           {
               path: 'services',
               loader: async () => {
                 return fetch('https://computer-man-backend.vercel.app/api/v1/services')
               },
-              element: <Services />
+              element: <LoadingRoute><Services /></LoadingRoute> 
           },
           {
               path: 'services/:id',
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
           },
           {
               path: 'reviews',
-              element: <ProtectedRoute><Reviews /></ProtectedRoute>
+              element: <ProtectedRoute><LoadingRoute><Reviews /></LoadingRoute></ProtectedRoute>
           },
           {
               path: 'add-service',

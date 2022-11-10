@@ -4,8 +4,10 @@ import { useLoaderData, useNavigate } from 'react-router-dom'
 import ServiceDetails from '../../components/service-detail/ServiceDetails'
 import ServiceReview from '../../components/service-review/ServiceReview'
 import { authContext } from '../../context/AuthProvider'
+import useTitle from '../../hooks/useTitle'
 
 const Service = () => {
+  useTitle('Services')
   const navigate = useNavigate()
   const { service } = useLoaderData()
   const { reviews } = service
