@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const LoadingRoute = ({children}) => {
   const [loading, setLoading] = useState(true)
+  const [path, setPath] = useState('')
+  const {pathname} = useLocation()
   useEffect(() => {
+    setLoading(true)
     setTimeout(() => {
       setLoading(false)
     }, 5000);
-    setLoading(true)
   }, [])
-  console.log(loading)
   if(loading){
     return (
         <div className='text-4xl text-center h-screen flex flex-col justify-center items-center gap-4'>
