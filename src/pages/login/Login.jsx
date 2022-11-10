@@ -23,7 +23,7 @@ const Login = () => {
 
     const { userLogin, googleLogin, errorHandler, error } = useContext(authContext)
     let path = location?.state?.from || '/'
-    if(path == '/register' || path == '/reset-password'){
+    if(path == '/register' || path == '/login'){
         path = '/'
     }
     const handleSubmit = async (e) => {
