@@ -1,6 +1,6 @@
 # b6a11-service-review-client-side-Bekon0700
 
-## site link: https://computer-man-assignment-11.web.app/login
+## site link: https://computer-man-assignment-11.web.app/
 
 # Key feature of this website:
 * Add service in a secure authorized way
