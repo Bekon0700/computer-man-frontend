@@ -7,6 +7,8 @@ import Reviews from './pages/reviews/Reviews'
 import AddService from './pages/add-service/AddService'
 import Login from './pages/login/Login'
 import Registration from './pages/registration/Registration'
+import Blog from './pages/blog/Blog'
+import Error from './pages/error/Error'
 
 import ProtectedRoute from './protected-route/ProtectedRoute'
 
@@ -17,6 +19,7 @@ const router = createBrowserRouter([
   {
       path: '/',
       element: <Main />,
+      errorElement: <Error />,
       children: [
           {
               path: '/',
@@ -53,6 +56,10 @@ const router = createBrowserRouter([
           {
               path: 'add-service',
               element: <ProtectedRoute><AddService /></ProtectedRoute>
+          },
+          {
+              path: 'blogs',
+              element: <Blog />
           },
           {
               path: 'login',

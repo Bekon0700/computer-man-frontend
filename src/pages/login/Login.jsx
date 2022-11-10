@@ -56,8 +56,22 @@ const Login = () => {
 
     const googleHandler = async () => {
         try{
-            await googleLogin()
-            navigate(path, { replace: true })
+            const {user} = await googleLogin()
+            const currentUser = {
+                email: user.email
+            }
+            fetch('https://computer-man-backend.vercel.app/api/v1/reviews/createToken', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('jwtoken', data.token);
+                navigate(path, { replace: true })
+            })
         }catch(err){
             console.log(err.message)
         }

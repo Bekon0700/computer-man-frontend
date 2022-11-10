@@ -34,10 +34,10 @@ const AddService = () => {
         method: 'POST',
         body: fData
       })
-      .then(res => {
-        toast.success('img uploaded')
-      }).catch(err => {
-        console.log(err)
+      .then(res => res.json())
+      .then(data => toast.success('img uploaded'))
+      .catch(err => {
+        toast.error('Img could not uploaded, due to vercel server problem')
       })
       e.target.reset()
       toast.success('Service Added')

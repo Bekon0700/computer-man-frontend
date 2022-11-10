@@ -18,7 +18,8 @@ const Service = () => {
       name: user.displayName,
       email: user.email,
       review: reviewInput,
-      serviceId: service._id
+      serviceId: service._id,
+      serviceName: service.serviceName
     }
 
     fetch('https://computer-man-backend.vercel.app/api/v1/reviews/', {
