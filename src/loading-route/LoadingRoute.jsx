@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 
 const LoadingRoute = ({children}) => {
-  const [loading, setLoading] = useState(true)
-  const [path, setPath] = useState('')
-  const {pathname} = useLocation()
+  const [loadingSpinner, setLoadingSpinner] = useState(true)
   useEffect(() => {
-    setLoading(true)
     setTimeout(() => {
-      setLoading(false)
+      setLoadingSpinner(false)
     }, 5000);
   }, [])
-  if(loading){
+  if(loadingSpinner){
     return (
         <div className='text-4xl text-center h-screen flex flex-col justify-center items-center gap-4'>
           <p>Computer-Man_</p>
