@@ -8,6 +8,12 @@ const Reviews = () => {
   const [review, setReview] = useState([])
   const { user } = useContext(authContext)
   const [reviewId, setReviewId] = useState(null)
+  const [loadingSpinner, setLoadingSpinner] = useState(true)
+  if(review.length == 0){
+    setTimeout(() => {
+      setLoadingSpinner(false)
+    }, 4000)
+  }
 
   useEffect(() => {
     fetch(`https://computer-man-backend.vercel.app/api/v1/reviews/${user.email}`, {
@@ -75,54 +81,63 @@ const Reviews = () => {
     setReviewId(id)
   }
 
-  return (
-    <div className='w-11/12 mx-auto flex flex-col gap-6 py-12 h-screen'>
-      {
-        review.length != 0 ?
-        <>
-        <p className='text-2xl text-center font-semibold'>All reviews</p>
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          {/* <!-- head --> */}
-          <thead>
-            <tr>
-              <th></th>
-              <th>Service Name</th>
-              <th>User Name</th>
-              <th>Review</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* <!-- row 1 --> */}
-            {
-              review.map((el, id) => <TableRow key={id} id={id} data={el} editBtn={handleEditBtn} delBtn={handleDltBtn} />)
-            }
-          </tbody>
-        </table>
+  if(loadingSpinner){
+    return (
+      <div className='text-4xl text-center h-screen flex flex-col justify-center items-center gap-4'>
+        <p>Computer-Man_</p>
+        <progress className="progress w-96"></progress>
       </div>
-      </>
-      :
-      <div className='text-center text-3xl font-bold '><p>No got no reviews</p></div>
-      }
-        {/* Put this part before </body> tag */}
-        <div>
-          <input type="checkbox" id="my-modal-5" className="modal-toggle" />
-          <div className="modal">
-            <div className="modal-box w-11/12 max-w-5xl">
-              <p className='pb-2 font-semibold text-lg'>Add your updated review</p>
-              <form onSubmit={submitEditBtn}>
-                <textarea className="textarea w-full border-gray-900" name="reviewInput" placeholder="your review"></textarea>
-                <button className='py-3 bg-blue-500 text-white font-semibold uppercase w-full rounded-md mt-2'>submit</button>
-              </form>
-              <div className="modal-action">
-                <label htmlFor="my-modal-5" className="btn">Close</label>
+    )
+  }else{
+    return (
+      <div className='w-11/12 mx-auto flex flex-col gap-6 py-12 h-screen'>
+        {
+          review.length != 0 ?
+          <>
+          <p className='text-2xl text-center font-semibold'>All reviews</p>
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            {/* <!-- head --> */}
+            <thead>
+              <tr>
+                <th></th>
+                <th>Service Name</th>
+                <th>User Name</th>
+                <th>Review</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* <!-- row 1 --> */}
+              {
+                review.map((el, id) => <TableRow key={id} id={id} data={el} editBtn={handleEditBtn} delBtn={handleDltBtn} />)
+              }
+            </tbody>
+          </table>
+        </div>
+        </>
+        :
+        <div className='text-center text-3xl font-bold '><p>You got no reviews</p></div>
+        }
+          {/* Put this part before </body> tag */}
+          <div>
+            <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box w-11/12 max-w-5xl">
+                <p className='pb-2 font-semibold text-lg'>Add your updated review</p>
+                <form onSubmit={submitEditBtn}>
+                  <textarea className="textarea w-full border-gray-900" name="reviewInput" placeholder="your review"></textarea>
+                  <button className='py-3 bg-blue-500 text-white font-semibold uppercase w-full rounded-md mt-2'>submit</button>
+                </form>
+                <div className="modal-action">
+                  <label htmlFor="my-modal-5" className="btn">Close</label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 export default Reviews

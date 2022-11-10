@@ -52,7 +52,7 @@ const router = createBrowserRouter([
           },
           {
               path: 'reviews',
-              element: <ProtectedRoute><LoadingRoute><Reviews /></LoadingRoute></ProtectedRoute>
+              element: <ProtectedRoute><Reviews /></ProtectedRoute>
           },
           {
               path: 'add-service',
