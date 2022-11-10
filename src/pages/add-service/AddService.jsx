@@ -30,7 +30,7 @@ const AddService = () => {
     .then(res => res.json())
     .then(data => {
       const {service} = data
-      fetch(`http://localhost:8500/api/v1/services/img-upload/${service._id}`, {
+      fetch(`https://computer-man-backend.vercel.app/api/v1/services/img-upload/${service._id}`, {
         method: 'POST',
         body: fData
       })
